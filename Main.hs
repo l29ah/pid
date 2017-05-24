@@ -15,7 +15,10 @@ main = do
 	hSetBuffering stdin LineBuffering
 	hSetBuffering stdout LineBuffering
 	args <- getArgs
-	let [kp, ki, kd] = readArgs args
+	let ([kp, ki, kd], pid) = case length args of
+		3 -> (readArgs args, simplePID)
+		4 -> (init $ readArgs args, \s o v -> boundIntegralPID s (last $ readArgs args) o v)
+		_ -> error "incorrect number of args"
 	let settings = PIDSettings kp ki kd
 	evalPID $ forever $ do
 		input <- liftIO $ getLine
