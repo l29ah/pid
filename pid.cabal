@@ -1,6 +1,7 @@
 name:                pid
 version:             0.1.0.1
-synopsis:            a simple pid controller
+synopsis:            a simple PID controller
+description:         a simple PID controller
 license:             OtherLicense
 license-file:        LICENSE
 author:              Sergey Alirzaev
